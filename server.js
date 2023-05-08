@@ -2,10 +2,12 @@ const express = require('express');
 
 const app = express();
 
-const router = require('./routes/users');
+const userrouter = require('./routes/users');
+const authrouter = require('./routes/auth')
 
 app.use(express.json());
-app.use(router);
+app.use(userrouter);
+app.use(authrouter);
 
 const mongoose = require('mongoose');
 
@@ -19,4 +21,4 @@ mongoose.connect("mongodb+srv://mayankindoliya:kiana@cluster0.mfofsan.mongodb.ne
   .catch((err) => {
     console.log(err)
   });
-   
+
