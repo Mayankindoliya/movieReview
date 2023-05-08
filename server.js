@@ -8,6 +8,11 @@ const authrouter = require('./routes/auth')
 app.use(express.json());
 app.use(userrouter);
 app.use(authrouter);
+//error handler
+app.use((err, req, res, next) => {
+  console.log(err)
+  res.json({"message": err.message, "stack": err.stack})
+})
 
 const mongoose = require('mongoose');
 
