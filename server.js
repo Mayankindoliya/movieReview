@@ -8,7 +8,12 @@ const authrouter = require('./routes/auth')
 app.use(express.json());
 app.use(userrouter);
 app.use(authrouter);
-//error handler
+// //error handler
+// app.use((err, req, res, next) => {
+//   console.log(err)
+//   res.json({"message": err.message, "stack": err.stack})
+// })
+
 app.use((err, req, res, next) => {
   console.log(err)
   res.json({"message": err.message, "stack": err.stack})
