@@ -3,21 +3,20 @@ const express = require('express');
 const app = express();
 
 const userrouter = require('./routes/users');
-const authrouter = require('./routes/auth')
+const authrouter = require('./routes/auth');
+const moviesrouter = require('./routes/movies');
 
 app.use(express.json());
 app.use(userrouter);
 app.use(authrouter);
-// //error handler
-// app.use((err, req, res, next) => {
-//   console.log(err)
-//   res.json({"message": err.message, "stack": err.stack})
-// })
+app.use(moviesrouter);
 
+//error handler
 app.use((err, req, res, next) => {
   console.log(err)
   res.json({"message": err.message, "stack": err.stack})
 })
+
 
 const mongoose = require('mongoose');
 
