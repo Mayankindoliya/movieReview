@@ -5,6 +5,7 @@ const app = express();
 const userrouter = require('./routes/users');
 const authrouter = require('./routes/auth');
 const moviesrouter = require('./routes/movies');
+const moviereviewrouter = require('./routes/moviereview')
 const jwt = require('./helpers/jwt')
 const Users = require('./models/users')
 
@@ -26,6 +27,7 @@ app.use(async (req, res, next) => {
 app.use(userrouter);
 app.use(authrouter);
 app.use(moviesrouter);
+app.use(moviereviewrouter)
 
 //error handler
 app.use((err, req, res, next) => {
