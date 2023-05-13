@@ -5,6 +5,7 @@ const router = express.Router();
 const UsersController = require('../controllers/users');
 
 router.get('/users', (req, res, next) => {
+  console.log(req.user)
   UsersController.getUsers()
     .then((data) => {
       res.json(data)

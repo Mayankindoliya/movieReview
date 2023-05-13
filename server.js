@@ -5,8 +5,24 @@ const app = express();
 const userrouter = require('./routes/users');
 const authrouter = require('./routes/auth');
 const moviesrouter = require('./routes/movies');
+const jwt = require('./helpers/jwt')
+const Users = require('./models/users')
 
 app.use(express.json());
+
+// authentication middleware
+app.use(async (req, res, next) => {
+  const authHeader = req.headers.authorization;
+  if(authHeader) {
+    // verify the token
+    const token = authHeader.split(' ')[1];
+    const payload = jwt.verifyJwt(token);
+    const user = await Users.findOne({_id: payload.id}, 'name email address')
+    req.user = user;
+  }
+  next()
+})
+
 app.use(userrouter);
 app.use(authrouter);
 app.use(moviesrouter);
