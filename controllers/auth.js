@@ -7,7 +7,7 @@ class authControllers {
 
   static async registerUsers(document) {
     const salt = bcryptjs.genSaltSync(10)
-    const hash = bcryptjs.hashSync(document.password, salt)
+    const hash = bcryptjs.hashSync(document.password, salt) 
     document.password = hash 
     const user = await Users.create(document)
     return user
