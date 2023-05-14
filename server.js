@@ -1,4 +1,5 @@
 require('dotenv').config()
+
 const express = require('express');
 
 const app = express();
@@ -22,7 +23,7 @@ app.use(moviereviewrouter)
 //error handler
 app.use((err, req, res, next) => {
   console.log(err)
-  res.json({"message": err.message, "stack": err.stack})
+  res.json({ "message": err.message, "stack": err.stack })
 })
 
 
