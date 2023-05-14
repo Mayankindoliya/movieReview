@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express');
 
 const app = express();
@@ -27,7 +28,7 @@ app.use((err, req, res, next) => {
 
 const mongoose = require('mongoose');
 
-mongoose.connect("mongodb+srv://mayankindoliya:kiana@cluster0.mfofsan.mongodb.net/movieReview?retryWrites=true&w=majority")
+mongoose.connect(process.env.MONGODB_URL)
   .then(() => {
     console.log("Database Connected")
     app.listen(3000, () => {
