@@ -1,24 +1,18 @@
 require('dotenv').config()
 
 const express = require('express');
+const router = require('./routes');
 
 const app = express();
 
-const userrouter = require('./routes/users');
-const authrouter = require('./routes/auth');
-const moviesrouter = require('./routes/movies');
-const moviereviewrouter = require('./routes/moviereview')
-const middlewares = require('./helpers/middlewares');
+ const middlewares = require('./helpers/middlewares');
 
 app.use(express.json());
 
 // authentication middleware
 app.use(middlewares.authenticationMiddleware);
 
-app.use(userrouter);
-app.use(authrouter);
-app.use(moviesrouter);
-app.use(moviereviewrouter)
+app.use(router);
 
 //error handler
 app.use((err, req, res, next) => {
